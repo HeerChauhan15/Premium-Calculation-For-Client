@@ -144,12 +144,12 @@ loader_pct = loader_pct_input if loader_pct_input is not None else 0.0
 
 # ============================================
 # SUM ASSURED RANGE — rates in the backend files are per ₹1,00,000
-# LAP: up to ₹40,00,000 | Home Loan: up to ₹60,00,000
+# Home Loan: ₹50,000 – ₹60,00,000 | LAP: ₹50,000 – ₹40,00,000
 # ============================================
 if loan_type == "Home Loan":
-    sa_min, sa_max = 100000, 6000000
+    sa_min, sa_max = 50000, 6000000
 else:
-    sa_min, sa_max = 100000, 4000000
+    sa_min, sa_max = 50000, 4000000
 
 st.divider()
 
