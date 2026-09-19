@@ -211,7 +211,7 @@ if st.button("Get Rate", type="primary"):
         )
         m1, m2, m3 = st.columns(3)
         with m1:
-            st.metric("Premium (Excl. GST)", f"₹ {premium_excl_gst:,.2f}")
+            st.metric("Premium (Excl. GST)", f"₹ {round(premium_excl_gst):,}")
         with m2:
             st.metric(f"GST Amount ({GST_RATE_FIXED:.0f}%)", f"₹ {gst_amount:,.2f}")
         with m3:
@@ -310,7 +310,7 @@ if uploaded_file is not None:
 
                 r_base = get_rate(df_rates, tenure_map, r_age, r_tenure)
                 r_excl, r_gst, r_incl = compute_premium_breakdown(r_base, loader_pct, r_sa)
-                premiums_excl_gst.append(round(r_excl, 2))
+                premiums_excl_gst.append(round(r_excl))
                 gst_amounts.append(round(r_gst, 2))
                 premiums_incl_gst.append(round(r_incl, 2))
                 statuses.append("✅")
@@ -342,7 +342,7 @@ if uploaded_file is not None:
 
         t1, t2, t3 = st.columns(3)
         with t1:
-            st.metric("💰 Total Premium (Excl. GST)", f"₹ {total_excl_gst:,.2f}")
+            st.metric("💰 Total Premium (Excl. GST)", f"₹ {round(total_excl_gst):,}")
         with t2:
             st.metric(f"💰 Total GST ({GST_RATE_FIXED:.0f}%)", f"₹ {total_gst:,.2f}")
         with t3:
@@ -353,7 +353,7 @@ if uploaded_file is not None:
 
         total_row = {c: "" for c in df.columns}
         total_row[name_col] = "TOTAL PREMIUM"
-        total_row["Premium (Excl. GST)"] = round(total_excl_gst, 2)
+        total_row["Premium (Excl. GST)"] = round(total_excl_gst)
         total_row[f"GST Amount ({GST_RATE_FIXED:.0f}%)"] = round(total_gst, 2)
         total_row["Premium (Incl. GST)"] = round(total_incl_gst, 2)
         df_out = pd.concat([df, pd.DataFrame([total_row])], ignore_index=True)
